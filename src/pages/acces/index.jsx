@@ -95,10 +95,20 @@ export default MapComponent;*/
 import { useState, useEffect, useRef } from 'react';
 import 'leaflet/dist/leaflet.css';
 import 'leaflet-routing-machine/dist/leaflet-routing-machine.css';
-import L from 'leaflet';
+import L, { point } from 'leaflet';
 import 'leaflet-routing-machine';
 import axios from 'axios';
 import NavbarComp from '../../components/Navbarcomp';
+import icon from 'leaflet/dist/images/marker-icon.png';
+import iconShadow from 'leaflet/dist/images/marker-shadow.png';
+
+const DefaultIcon = L.icon({
+  iconUrl: icon,
+  shadowUrl: iconShadow,
+  iconAnchor: point(15, 40, true)
+});
+
+L.Marker.prototype.options.icon = DefaultIcon;
 
 const MapComponent = () => {
   const [startLocation, setStartLocation] = useState('Gunung Tua, Sumatera Utara');
